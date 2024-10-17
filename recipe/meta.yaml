@@ -1,4 +1,6 @@
 {% set version = "2.6.1" %}
+{% set build_number = 1 %}
+{% set is_noop = is_noop | default("false") %}
 
 package:
   name: legacy-cgi
@@ -10,16 +12,27 @@ source:
 
 build:
   noarch: python
+{% if is_noop == "true" %}
+  number: {{ build_number * 2 }}
+{% else %}
+  number: {{ (build_number * 2) + 1 }}
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+{% endif %}
 
 requirements:
+{% if is_noop == "true" %}
   host:
-    - python >=3.10.0
-    - poetry-core >=1.0.0
+    - python <3.10
+  run:
+    - python <3.10
+{% else %}
+  host:
     - pip
+    - poetry-core >=1.0.0
+    - python >=3.10.0
   run:
     - python >=3.10.0
+{% endif %}
 
 test:
   imports:
