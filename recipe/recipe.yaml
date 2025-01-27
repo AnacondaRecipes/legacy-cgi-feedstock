@@ -3,7 +3,7 @@ schema_version: 1
 context:
   version: 2.6.1
   number: 2
-  effective_build_number: ${{ number * 2 + (0 if noop == "true" else 1) }}
+  effective_build_number: ${{ (number | int) * 2 + (0 if noop == "true" else 1) }}
   removed_in_python: "3.10"
   python_min: ${{ python_min if noop == "true" else removed_in_python }}
 
