@@ -1,8 +1,8 @@
 schema_version: 1
 
 context:
-  version: 2.6.1
-  number: 2
+  version: "2.6.2"
+  number: 0
   effective_build_number: ${{ (number | int) * 2 + (0 if is_noop == "true" else 1) }}
   removed_in_python: "3.10"
   python_min: ${{ python_min if is_noop == "true" else removed_in_python }}
@@ -16,7 +16,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/l/legacy-cgi/legacy_cgi-${{ version }}.tar.gz
-  sha256: f2ada99c747c3d72a473a6aaff6259a61f226b06fe9f3106e495ab83fd8f7a42
+  sha256: 9952471ceb304043b104c22d00b4f333cac27a6abe446d8a528fc437cf13c85f
 
 build:
   number: ${{ effective_build_number }}
