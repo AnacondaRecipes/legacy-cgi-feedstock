@@ -44,7 +44,7 @@ tests:
 about:
   homepage: https://github.com/jackrosenthal/legacy-cgi
   summary: Fork of the standard library cgi and cgitb modules, being deprecated in PEP-594
-  license: EPL-2.0
+  license: PSF-2.0
   license_file: LICENSE
 
 extra:
