@@ -1,7 +1,9 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/prefix-dev/recipe-format/main/schema.json
 schema_version: 1
 
 context:
   version: "2.6.3"
+  # linter complains if any of this is done with if/then/else below
   number: 0
   effective_build_number: ${{ (number | int) * 2 + (0 if is_noop == "true" else 1) }}
   removed_in_python: "3.10"
@@ -26,7 +28,7 @@ build:
 requirements:
   host:
     - pip
-    - poetry-core >=1.0.0
+    - hatchling
     - python ${{ python_min }}.*
   run:
     - python >=${{ python_min }}${{ python_max }}
