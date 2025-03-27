@@ -5,7 +5,7 @@ Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/legacy-cgi-feed
 
 Home: https://github.com/jackrosenthal/legacy-cgi
 
-Package license: EPL-2.0
+Package license: PSF-2.0
 
 Summary: Fork of the standard library cgi and cgitb modules, being deprecated in PEP-594
 
