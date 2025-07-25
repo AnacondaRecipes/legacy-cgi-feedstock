@@ -36,8 +36,8 @@ test:
   commands:
     - pip check
     # Deprecation warning works from python 3.10 up
-    - pytest -v tests # [py<310]
-    - pytest -v tests -k "not test_log"
+    - pytest -v tests # [py>=310]
+    - pytest -v tests -k "not test_log" # [py<310]
 
 about:
   home: https://github.com/jackrosenthal/legacy-cgi/
