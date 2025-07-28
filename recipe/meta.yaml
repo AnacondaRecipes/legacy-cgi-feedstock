@@ -1,0 +1,55 @@
+{% set name = "legacy-cgi" %}
+{% set version = "2.6.3" %}
+
+package:
+  name: {{ name }}
+  version: {{ version }}
+
+source:
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
+  sha256: 4c119d6cb8e9d8b6ad7cc0ddad880552c62df4029622835d06dfd18f438a8154
+
+build:
+  skip: true # [py<38]
+  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+
+requirements:
+  host:
+    - python
+    - pip
+    - wheel
+    - hatchling
+  run:
+    - python
+
+test:
+  imports:
+    - cgi
+    - cgitb
+  source_files:
+    - tests
+  requires:
+    - pip
+    - pytest
+  commands:
+    - pip check
+    # Deprecation warning works from python 3.10 up
+    - pytest -v tests # [py>=310]
+    - pytest -v tests -k "not test_log" # [py<310]
+
+about:
+  home: https://github.com/jackrosenthal/legacy-cgi
+  license_file: LICENSE
+  license: PSF-2.0
+  license_family: PSF
+  summary: 'Fork of the standard library cgi and cgitb modules, being deprecated in PEP-594'
+  description: |
+    This is a fork of the standard library modules cgi and cgitb.
+    They have been removed from the Python standard libary in Python 3.13 by PEP-594.
+  doc_source_url: https://github.com/jackrosenthal/legacy-cgi/tree/main/docs
+  dev_url: https://github.com/jackrosenthal/legacy-cgi
+
+extra:
+  recipe-maintainers:
+    - stuertz
